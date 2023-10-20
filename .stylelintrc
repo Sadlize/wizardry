@@ -1,0 +1,46 @@
+{
+  "extends": [
+    "stylelint-config-standard-scss",
+    "stylelint-config-clean-order/error"
+  ],
+  "plugins": [
+    "stylelint-order",
+    "stylelint-no-unsupported-browser-features"
+  ],
+  "rules": {
+    "plugin/no-unsupported-browser-features": [
+      true,
+      {
+        "severity": "error",
+        "ignore": [
+          "multicolumn",
+          "intrinsic-width",
+          "css-touch-action",
+          "css-appearance",
+          "css-mixblendmode",
+          "css-sticky",
+          "pointer"
+        ]
+      }
+    ],
+    "selector-class-pattern": [
+      "^([a-z]+[A-Z0-9]?[a-z]*)+$",
+      {
+        "message": "Expected custom property name to be camelCase"
+      }
+    ],
+    "declaration-empty-line-before": [
+      "never",
+      {
+        "ignore": [
+          "after-comment",
+          "after-declaration",
+          "inside-single-line-block"
+        ]
+      }
+    ],
+    "declaration-block-no-redundant-longhand-properties": [true, {
+      "ignoreShorthands": ["inset"]
+    }]
+  }
+}

@@ -1,0 +1,38 @@
+$bp-hover: 'screen and (hover: hover)';
+
+// BP 1
+$bp1-only: 'screen and (max-width: 430px)';
+$bp1-max: 'screen and (max-width: 430px)';
+
+// BP 2
+$bp2-min: 'screen and (min-width: 430.02px)';
+$bp2-max: 'screen and (max-width: 1023.98px)';
+$bp2-only: 'screen and (min-width: 430.02px) and (max-width: 1023.98px)';
+
+// BP 3
+$bp3-min: 'screen and (min-width: 1024px)';
+$bp3-max: 'screen and (max-width: 1280px)';
+$bp3-only: 'screen and (min-width: 1024px) and (max-width: 1280px)';
+
+// BP 4
+$bp4-min: 'screen and (min-width: 1280.02px)';
+$bp4-max: 'screen and (max-width: 1440px)';
+$bp4-only: 'screen and (min-width: 1280.02px) and (max-width: 1440px)';
+
+// BP 5
+$bp5-min: 'screen and (min-width: 1440.02px)';
+$bp5-max: 'screen and (max-width: 1919.98px)';
+$bp5-only: 'screen and (min-width: 1440.02px) and (max-width: 1919.98px)';
+
+// BP 6
+$bp6-min: 'screen and (min-width: 1920px)';
+$bp6-max: 'screen and (max-width: 2559.98px)';
+$bp6-only: 'screen and (min-width: 1920px) and (max-width: 2559.98px)';
+
+// BP 7
+$bp7-min: 'screen and (min-width: 2560px)';
+$bp7-only: 'screen and (min-width: 2560px)';
+
+@function bp-range($min, $max) {
+  @return $min + str-slice($max, 7);
+}
