@@ -1,5 +1,4 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-# Disable concurrent to run `typecheck` after ESLint in lint-staged
-cd "$(dirname "$0")/.." && npm run typecheck && npx lint-staged --concurrent false
+npm run typecheck && npx lint-staged
