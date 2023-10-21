@@ -12,7 +12,7 @@
     "lintStyles": "stylelint **/*.scss",
     "lint:fix": "eslint src/ --ext .ts --ext .tsx --fix && stylelint **/*.scss --fix",
     "format": "prettier --write src/**/*.{ts,tsx}",
-    "typecheck": "tsc --noEmit -p ./tsconfig.json",
+    "typecheck": "tsc --noEmit",
     "commit": "cz",
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build",
