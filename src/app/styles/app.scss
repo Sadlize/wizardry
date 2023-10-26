@@ -31,23 +31,21 @@ body {
 html {
   font-size: 62.5%;
 
-  /*
-  @media screen and (width <= 430px) {
-    font-size: calc(10px + 0.0242 * (100vw - 430px));
+  @media #{$bp1-only} {
+    font-size: calc(10px + 0.0242 * (100vw - $bp1-maxValue));
   }
 
-  @media screen and (width >= 430.02px) and (width <= 1023.98px) {
-    font-size: calc(10px + 0.0095 * (100vw - 1023.98px));
+  @media #{$bp2-only} {
+    font-size: calc(10px + 0.0095 * (100vw - $bp2-maxValue));
   }
 
-  @media screen and (width >= 1281.02px) and (width <= 1440px) {
-    font-size: calc(10px + 0.007 * (100vw - 1440px));
+  @media #{$bp4-only} {
+    font-size: calc(10px + 0.007 * (100vw - $bp4-maxValue));
   }
 
-  @media screen and (width >= 1440.02px) and (width <= 1919.98px) {
-    font-size: calc(10px + 0.0104 * (100vw - 1440px));
+  @media #{$bp5-only} {
+    font-size: calc(10px + 0.0104 * (100vw - $bp4-minValue));
   }
- */
 }
 
 fieldset {

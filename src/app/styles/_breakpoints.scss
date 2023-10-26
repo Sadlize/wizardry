@@ -1,37 +1,47 @@
 $bp-hover: 'screen and (hover: hover)';
 
-// BP 1
-$bp1-only: 'screen and (max-width: 430px)';
-$bp1-max: 'screen and (max-width: 430px)';
+// sm breakpoint
+$bp1-maxValue: 430px;
+$bp1-only: 'screen and (max-width: #{$bp1-maxValue})';
 
-// BP 2
-$bp2-min: 'screen and (min-width: 430.02px)';
-$bp2-max: 'screen and (max-width: 1023.98px)';
-$bp2-only: 'screen and (min-width: 430.02px) and (max-width: 1023.98px)';
+// md breakpoint
+$bp2-minValue: 430.02px;
+$bp2-maxValue: 1023.98px;
+$bp2-min: 'screen and (min-width: #{$bp2-minValue})';
+$bp2-max: 'screen and (max-width: #{$bp2-maxValue})';
+$bp2-only: 'screen and (min-width: #{$bp2-minValue}) and (max-width: #{$bp2-maxValue})';
 
-// BP 3
-$bp3-min: 'screen and (min-width: 1024px)';
-$bp3-max: 'screen and (max-width: 1280px)';
-$bp3-only: 'screen and (min-width: 1024px) and (max-width: 1280px)';
+// lg breakpoint
+$bp3-minValue: 1024px;
+$bp3-maxValue: 1280px;
+$bp3-min: 'screen and (min-width: #{$bp3-minValue})';
+$bp3-max: 'screen and (max-width: #{$bp3-maxValue})';
+$bp3-only: 'screen and (min-width: #{$bp3-minValue}) and (max-width: #{$bp3-maxValue})';
 
-// BP 4
-$bp4-min: 'screen and (min-width: 1280.02px)';
-$bp4-max: 'screen and (max-width: 1440px)';
-$bp4-only: 'screen and (min-width: 1280.02px) and (max-width: 1440px)';
+// xl breakpoint
+$bp4-minValue: 1280.02px;
+$bp4-maxValue: 1440px;
+$bp4-min: 'screen and (min-width: #{$bp4-minValue})';
+$bp4-max: 'screen and (max-width: #{$bp4-maxValue})';
+$bp4-only: 'screen and (min-width: #{$bp4-minValue}) and (max-width: #{$bp4-maxValue})';
 
-// BP 5
-$bp5-min: 'screen and (min-width: 1440.02px)';
-$bp5-max: 'screen and (max-width: 1919.98px)';
-$bp5-only: 'screen and (min-width: 1440.02px) and (max-width: 1919.98px)';
+// 2xl breakpoint
+$bp5-minValue: 1440.02px;
+$bp5-maxValue: 1919.98px;
+$bp5-min: 'screen and (min-width: #{$bp5-minValue})';
+$bp5-max: 'screen and (max-width: #{$bp5-maxValue})';
+$bp5-only: 'screen and (min-width: #{$bp5-minValue}) and (max-width: #{$bp5-maxValue})';
 
-// BP 6
-$bp6-min: 'screen and (min-width: 1920px)';
-$bp6-max: 'screen and (max-width: 2559.98px)';
-$bp6-only: 'screen and (min-width: 1920px) and (max-width: 2559.98px)';
+// 3xl breakpoint
+$bp6-minValue: 1920px;
+$bp6-maxValue: 2559.98px;
+$bp6-min: 'screen and (min-width: #{$bp6-minValue})';
+$bp6-max: 'screen and (max-width: #{$bp6-maxValue})';
+$bp6-only: 'screen and (min-width: #{$bp6-minValue}) and (max-width: #{$bp6-maxValue})';
 
-// BP 7
-$bp7-min: 'screen and (min-width: 2560px)';
-$bp7-only: 'screen and (min-width: 2560px)';
+// 4xl breakpoint
+$bp7-minValue: 2560px;
+$bp7-only: 'screen and (min-width: #{$bp7-minValue})';
 
 @function bp-range($min, $max) {
   @return $min + str-slice($max, 7);
