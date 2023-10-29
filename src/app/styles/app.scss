@@ -32,19 +32,19 @@ html {
   font-size: 62.5%;
 
   @media #{$bp1-only} {
-    font-size: calc(10px + 0.0242 * (100vw - $bp1-maxValue));
+    font-size: calc(10px + 0.0242 * (100vw - $bp1-max-width));
   }
 
   @media #{$bp2-only} {
-    font-size: calc(10px + 0.0095 * (100vw - $bp2-maxValue));
+    font-size: calc(10px + 0.0095 * (100vw - $bp2-max-width));
   }
 
   @media #{$bp4-only} {
-    font-size: calc(10px + 0.007 * (100vw - $bp4-maxValue));
+    font-size: calc(10px + 0.007 * (100vw - $bp4-max-width));
   }
 
   @media #{$bp5-only} {
-    font-size: calc(10px + 0.0104 * (100vw - $bp4-minValue));
+    font-size: calc(10px + 0.0104 * (100vw - $bp4-min-width));
   }
 }
 

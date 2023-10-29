@@ -13,14 +13,13 @@
       {
         "severity": "error",
         "ignore": [
-          "multicolumn",
-          "intrinsic-width",
           "css-touch-action",
-          "css-appearance",
-          "css-mixblendmode",
-          "css-sticky",
+          "text-size-adjust",
+          "css-math-functions",
+          "css-nesting",
           "pointer"
-        ]
+        ],
+        "ignorePartialSupport": true
       }
     ],
     "selector-class-pattern": [
