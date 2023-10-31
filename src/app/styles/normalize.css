@@ -1,28 +1,47 @@
-/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+/* Based on normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css
+with some additions */
 
 /* Document
    ========================================================================== */
 
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Fira Sans',
+    'Droid Sans',
+    'Helvetica Neue',
+    sans-serif;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 /**
- * 1. Correct the line height in all browsers.
- * 2. Prevent adjustments of font size after orientation changes in iOS.
+ * 1. Set default text size as 10px.
+ * 2. Correct the line height in all browsers.
+ * 3. Prevent adjustments of font size after orientation changes in iOS.
  */
 
 html {
-  line-height: 1.15; /* 1 */
-  -webkit-text-size-adjust: 100%; /* 2 */
+  font-size: 62.5%; /* 1 */
+  line-height: 1.15; /* 2 */
+  -webkit-text-size-adjust: 100%; /* 3 */
 }
 
 /* Sections
    ========================================================================== */
-
-/**
- * Remove the margin in all browsers.
- */
-
-body {
-  margin: 0;
-}
 
 /**
  * Render the `main` element consistently in IE.
@@ -94,7 +113,7 @@ abbr[title] {
 
 b,
 strong {
-  font-weight: bolder;
+  font-weight: 800;
 }
 
 /**
@@ -162,6 +181,7 @@ input,
 optgroup,
 select,
 textarea {
+  color: inherit; /* 1 */
   font-family: inherit; /* 1 */
   font-size: 100%; /* 1 */
   line-height: 1.15; /* 1 */
@@ -198,6 +218,7 @@ button,
 [type='button'],
 [type='reset'],
 [type='submit'] {
+  cursor: pointer;
   -webkit-appearance: button;
 }
 
@@ -348,4 +369,18 @@ template {
 
 [hidden] {
   display: none;
+}
+
+svg {
+  display: block;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
 }
