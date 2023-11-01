@@ -1,21 +1,28 @@
 @import 'normalize.css';
 @import 'variables';
 
+@mixin fluid-typography($font-start, $font-end, $screen-from, $screen-to) {
+  min-height: 0; /* Safari resize fix */
+  font-size: calc(
+    #{$font-start * 0.0625}rem + (($font-end - $font-start) * (100vw - #{$screen-from}px) / ($screen-to - $screen-from))
+  );
+}
+
 html {
   /* Fluid typography */
-  @media #{$bp1-only} {
-    font-size: calc(10px + 0.0242 * (100vw - $bp1-max-width));
+  @media #{bp($bp1-xs-only)} {
+    @include fluid-typography(0, 16, $bp1-xs-min-width, $bp1-xs-max-width);
   }
 
-  @media #{$bp2-only} {
-    font-size: calc(10px + 0.0095 * (100vw - $bp2-max-width));
+  @media #{bp($bp2-sm-only)} {
+    @include fluid-typography(16, 10, $bp2-sm-min-width, $bp2-sm-max-width);
   }
 
-  @media #{$bp4-only} {
-    font-size: calc(10px + 0.007 * (100vw - $bp4-max-width));
+  @media #{bp($bp4-lg-only)} {
+    @include fluid-typography(10, 17, $bp4-lg-min-width, $bp4-lg-max-width);
   }
 
-  @media #{$bp5-only} {
-    font-size: calc(10px + 0.0104 * (100vw - $bp4-min-width));
+  @media #{bp($bp5-xl-only)} {
+    @include fluid-typography(17, 22, $bp5-xl-min-width, $bp5-xl-max-width);
   }
 }

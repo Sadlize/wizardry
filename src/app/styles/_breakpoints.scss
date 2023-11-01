@@ -1,48 +1,68 @@
-$bp-hover: 'screen and (hover: hover)';
+@use "sass:map";
+
+$breakpoints: (
+  xs: 0,
+  sm: 430.02,
+  md: 1024,
+  lg: 1280.02,
+  xl: 1440.02,
+  xxl: 1920,
+  xxxl: 2560,
+);
+
+// xs breakpoint
+$bp1-xs-min-width: map.get($breakpoints, xs);
+$bp1-xs-max-width: map.get($breakpoints, sm) - 0.02;
+$bp1-xs-only: '(max-width: #{$bp1-xs-max-width}px)';
 
 // sm breakpoint
-$bp1-max-width: 430px;
-$bp1-only: 'screen and (max-width: #{$bp1-max-width})';
+$bp2-sm-min-width: map.get($breakpoints, sm);
+$bp2-sm-max-width: map.get($breakpoints, md) - 0.02;
+$bp2-sm-min: '(min-width: #{$bp2-sm-min-width}px)';
+$bp2-sm-max: '(max-width: #{$bp2-sm-max-width}px)';
+$bp2-sm-only: '(min-width: #{$bp2-sm-min-width}px) and (max-width: #{$bp2-sm-max-width}px)';
 
 // md breakpoint
-$bp2-min-width: 430.02px;
-$bp2-max-width: 1023.98px;
-$bp2-min: 'screen and (min-width: #{$bp2-min-width})';
-$bp2-max: 'screen and (max-width: #{$bp2-max-width})';
-$bp2-only: 'screen and (min-width: #{$bp2-min-width}) and (max-width: #{$bp2-max-width})';
+$bp3-md-min-width: map.get($breakpoints, md);
+$bp3-md-max-width: map.get($breakpoints, lg) - 0.02;
+$bp3-md-min: '(min-width: #{$bp3-md-min-width}pxpx)';
+$bp3-md-max: '(max-width: #{$bp3-md-max-width}pxpx)';
+$bp3-md-only: '(min-width: #{$bp3-md-min-width}pxpx) and (max-width: #{$bp3-md-max-width}pxpx)';
 
 // lg breakpoint
-$bp3-min-width: 1024px;
-$bp3-max-width: 1280px;
-$bp3-min: 'screen and (min-width: #{$bp3-min-width})';
-$bp3-max: 'screen and (max-width: #{$bp3-max-width})';
-$bp3-only: 'screen and (min-width: #{$bp3-min-width}) and (max-width: #{$bp3-max-width})';
+$bp4-lg-min-width: map.get($breakpoints, lg);
+$bp4-lg-max-width: map.get($breakpoints, xl) - 0.02;
+$bp4-lg-min: '(min-width: #{$bp4-lg-min-width})';
+$bp4-lg-max: '(max-width: #{$bp4-lg-max-width})';
+$bp4-lg-only: '(min-width: #{$bp4-lg-min-width}) and (max-width: #{$bp4-lg-max-width})';
 
 // xl breakpoint
-$bp4-min-width: 1280.02px;
-$bp4-max-width: 1440px;
-$bp4-min: 'screen and (min-width: #{$bp4-min-width})';
-$bp4-max: 'screen and (max-width: #{$bp4-max-width})';
-$bp4-only: 'screen and (min-width: #{$bp4-min-width}) and (max-width: #{$bp4-max-width})';
+$bp5-xl-min-width: map.get($breakpoints, xl);
+$bp5-xl-max-width: map.get($breakpoints, xxl) - 0.02;
+$bp5-xl-min: '(min-width: #{$bp5-xl-min-width}px)';
+$bp5-xl-max: '(max-width: #{$bp5-xl-max-width}px)';
+$bp5-xl-only: '(min-width: #{$bp5-xl-min-width}px) and (max-width: #{$bp5-xl-max-width}px)';
 
 // 2xl breakpoint
-$bp5-min-width: 1440.02px;
-$bp5-max-width: 1919.98px;
-$bp5-min: 'screen and (min-width: #{$bp5-min-width})';
-$bp5-max: 'screen and (max-width: #{$bp5-max-width})';
-$bp5-only: 'screen and (min-width: #{$bp5-min-width}) and (max-width: #{$bp5-max-width})';
+$bp6-xxl-min-width: map.get($breakpoints, xxl);
+$bp6-xxl-max-width: map.get($breakpoints, xxxl) - 0.02;
+$bp6-xxl-min: '(min-width: #{$bp6-xxl-min-width}px)';
+$bp6-xxl-max: '(max-width: #{$bp6-xxl-max-width}px)';
+$bp6-xxl-only: '(min-width: #{$bp6-xxl-min-width}px) and (max-width: #{$bp6-xxl-max-width}px)';
 
 // 3xl breakpoint
-$bp6-min-width: 1920px;
-$bp6-max-width: 2559.98px;
-$bp6-min: 'screen and (min-width: #{$bp6-min-width})';
-$bp6-max: 'screen and (max-width: #{$bp6-max-width})';
-$bp6-only: 'screen and (min-width: #{$bp6-min-width}) and (max-width: #{$bp6-max-width})';
+$bp7-xxxl-min-width: map.get($breakpoints, xxxl);
+$bp7-xxxl-only: '(min-width: #{$bp7-xxxl-min-width}px)';
 
-// 4xl breakpoint
-$bp7-min-width: 2560px;
-$bp7-only: 'screen and (min-width: #{$bp7-min-width})';
+// hover
+$bp-hover: '(hover: hover)';
 
-@function bp-range($min, $max) {
-  @return $min + str-slice($max, 7);
+@function bp($args...) {
+  $result: 'screen';
+
+  @each $arg in $args {
+    $result: #{$result} + ' and ' + #{$arg};
+  }
+
+  @return $result;
 }

@@ -36,7 +36,7 @@
   --ease-in-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
   --ease-in-out-quint: cubic-bezier(0.83, 0, 0.17, 1);
 
-  @media #{$bp2-min} {
+  @media #{$bp2-sm-min} {
     --dcg-count: 12;
   }
 }
