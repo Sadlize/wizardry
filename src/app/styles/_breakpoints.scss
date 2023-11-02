@@ -1,4 +1,7 @@
-@use "sass:map";
+@use 'sass:map';
+@use 'sass:string';
+@use 'sass:list';
+@use 'sass:meta';
 
 $breakpoints: (
   xs: 0,
@@ -8,61 +11,87 @@ $breakpoints: (
   xl: 1440.02,
   xxl: 1920,
   xxxl: 2560,
-);
+) !default;
 
-// xs breakpoint
-$bp1-xs-min-width: map.get($breakpoints, xs);
-$bp1-xs-max-width: map.get($breakpoints, sm) - 0.02;
-$bp1-xs-only: '(max-width: #{$bp1-xs-max-width}px)';
-
-// sm breakpoint
-$bp2-sm-min-width: map.get($breakpoints, sm);
-$bp2-sm-max-width: map.get($breakpoints, md) - 0.02;
-$bp2-sm-min: '(min-width: #{$bp2-sm-min-width}px)';
-$bp2-sm-max: '(max-width: #{$bp2-sm-max-width}px)';
-$bp2-sm-only: '(min-width: #{$bp2-sm-min-width}px) and (max-width: #{$bp2-sm-max-width}px)';
-
-// md breakpoint
-$bp3-md-min-width: map.get($breakpoints, md);
-$bp3-md-max-width: map.get($breakpoints, lg) - 0.02;
-$bp3-md-min: '(min-width: #{$bp3-md-min-width}pxpx)';
-$bp3-md-max: '(max-width: #{$bp3-md-max-width}pxpx)';
-$bp3-md-only: '(min-width: #{$bp3-md-min-width}pxpx) and (max-width: #{$bp3-md-max-width}pxpx)';
-
-// lg breakpoint
-$bp4-lg-min-width: map.get($breakpoints, lg);
-$bp4-lg-max-width: map.get($breakpoints, xl) - 0.02;
-$bp4-lg-min: '(min-width: #{$bp4-lg-min-width})';
-$bp4-lg-max: '(max-width: #{$bp4-lg-max-width})';
-$bp4-lg-only: '(min-width: #{$bp4-lg-min-width}) and (max-width: #{$bp4-lg-max-width})';
-
-// xl breakpoint
-$bp5-xl-min-width: map.get($breakpoints, xl);
-$bp5-xl-max-width: map.get($breakpoints, xxl) - 0.02;
-$bp5-xl-min: '(min-width: #{$bp5-xl-min-width}px)';
-$bp5-xl-max: '(max-width: #{$bp5-xl-max-width}px)';
-$bp5-xl-only: '(min-width: #{$bp5-xl-min-width}px) and (max-width: #{$bp5-xl-max-width}px)';
-
-// 2xl breakpoint
-$bp6-xxl-min-width: map.get($breakpoints, xxl);
-$bp6-xxl-max-width: map.get($breakpoints, xxxl) - 0.02;
-$bp6-xxl-min: '(min-width: #{$bp6-xxl-min-width}px)';
-$bp6-xxl-max: '(max-width: #{$bp6-xxl-max-width}px)';
-$bp6-xxl-only: '(min-width: #{$bp6-xxl-min-width}px) and (max-width: #{$bp6-xxl-max-width}px)';
-
-// 3xl breakpoint
-$bp7-xxxl-min-width: map.get($breakpoints, xxxl);
-$bp7-xxxl-only: '(min-width: #{$bp7-xxxl-min-width}px)';
-
-// hover
-$bp-hover: '(hover: hover)';
-
-@function bp($args...) {
-  $result: 'screen';
-
-  @each $arg in $args {
-    $result: #{$result} + ' and ' + #{$arg};
+@mixin css-property($property, $value) {
+  @if type_of($value) == string {
+    #{$property}: string.unquote($value);
+  } @else {
+    #{$property}: $value;
   }
+}
 
-  @return $result;
+@function split-screens($screen) {
+  $string: string.unquote('#{$screen}');
+  $sep-id: string.index(string.quote($string), '-');
+
+  @if $sep-id {
+    @return (string.quote(string.slice($string, 0, $sep-id - 1)), string.quote(string.slice($string, $sep-id + 1)));
+  } @else {
+    @return $string;
+  }
+}
+
+@function add-query($acc, $width, $direction) {
+  @return $acc + ' and (#{$direction}-width: #{$width}px)';
+}
+
+@function get-width-value($_screen) {
+  @return if(map.has-key($breakpoints, $_screen), map.get($breakpoints, $_screen), $_screen);
+}
+
+@function fluid-typography($font-start, $font-end, $screen-from, $screen-to) {
+  @return calc(
+    #{$font-start * 0.0625}rem + (($font-end - $font-start) * (100vw - #{$screen-from}px) / ($screen-to - $screen-from))
+  );
+}
+
+@mixin media($properties, $orientation: false) {
+  $media-direction: 'min' !default;
+
+  @each $property, $value in $properties {
+    @if $property == 'extend' {
+      @extend #{string.unquote($value)} !optional;
+    } @else if type_of($value) == 'map' {
+      @each $screen, $val in $value {
+        $screen: split-screens($screen);
+
+        @if $screen == all {
+          @include css_property($property, $val);
+        } @else {
+          $query: 'only screen';
+
+          @if type_of($screen) == 'list' {
+            $min-screen: get-width-value(list.nth($screen, 1));
+            $max-screen: get-width-value(list.nth($screen, 2)) - 0.02;
+
+            @if $min-screen == min or $min-screen == max {
+              $query: add-query($query, $max-screen, $min-screen);
+            } @else {
+              $query: add-query($query, $min-screen, 'min');
+              $query: add-query($query, $max-screen, 'max');
+            }
+
+            @if $property == 'fluid-typography' and type_of($val) == 'list' {
+              $val: fluid-typography(list.nth($val, 1), list.nth($val, 2), $min-screen, $max-screen);
+            }
+          } @else if type_of($screen) == 'number' or 'string' {
+            $query: add-query($query, get-width-value($screen), $media-direction);
+          } @else {
+            @error "Incorrect screen type. Only a string ('200-lg' or 200-lg) and a number (single 300 or range with quotes '200-500') are allowed.";
+          }
+
+          @if $orientation {
+            $query: $query + ' and (orientation: #{$orientation})';
+          }
+
+          @media #{$query} {
+            @include css_property(if($property == 'fluid-typography', 'font-size', $property), $val);
+          }
+        }
+      }
+    } @else {
+      @include css_property($property, $value);
+    }
+  }
 }

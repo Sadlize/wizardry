@@ -32,12 +32,14 @@ body {
  * 1. Set default text size as 10px.
  * 2. Correct the line height in all browsers.
  * 3. Prevent adjustments of font size after orientation changes in iOS.
+ * 4. Safari resize fix.
  */
 
 html {
   font-size: 62.5%; /* 1 */
   line-height: 1.15; /* 2 */
   -webkit-text-size-adjust: 100%; /* 3 */
+  min-height: 0; /* 4 */
 }
 
 /* Sections
