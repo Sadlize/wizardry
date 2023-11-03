@@ -13,6 +13,7 @@ $breakpoints: (
   xxxl: 2560,
 ) !default;
 
+/* Utility */
 @mixin css-property($property, $value) {
   @if type_of($value) == string {
     #{$property}: string.unquote($value);
@@ -92,6 +93,14 @@ $breakpoints: (
       }
     } @else {
       @include css_property($property, $value);
+    }
+  }
+}
+
+@mixin hover {
+  @media (hover: hover) {
+    &:hover {
+      @content;
     }
   }
 }
