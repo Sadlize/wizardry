@@ -39,3 +39,6 @@ Developer experience first:
 - It was decided not to impose the use of any solution, but to allow the developer to make his own choice.
 If the project is small, it is recommended to look towards **[nanostores](https://github.com/nanostores/nanostores)** or **[zustand](https://github.com/pmndrs/zustand)**.
 Otherwise, you can choose from **[redux](https://redux.js.org/)**, **[effector](https://effector.dev/)** or whatever you prefer.
+
+## License
+Licensed under the MIT License, Copyright © 2023

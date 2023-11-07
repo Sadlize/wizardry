@@ -2,6 +2,7 @@
   "name": "nextplate",
   "version": "1.0.0",
   "author": "Alexey Pautov-Brevnov <alexey.pautovbrevnov@gmail.com>",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "dev": "next dev",
