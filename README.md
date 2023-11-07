@@ -21,6 +21,9 @@ Developer experience first:
 - ✅ Strict Mode for TypeScript and React 18 is enabled
 - 🚨 **[Zod](https://zod.dev)** – TypeScript-first schema declaration and validation library
 
+#### Styling
+- 🌈 **[Sass](https://sass-lang.com/)** - Sass is the most mature, stable, and powerful professional grade CSS extension language in the world.
+
 #### Design Patterns
 - 📏 **[ESLint](https://eslint.org)** – Find and fix problems in your JavaScript code
 - 🎨 **[Stylelint](https://stylelint.io/)** – A mighty CSS linter that helps you avoid errors and enforce conventions
@@ -33,6 +36,6 @@ Developer experience first:
 - 🎉 Storybook for UI development
 
 #### State Management
-- It was decided not to impose the use of any solution, but to allow the developer to make his own choice
+- It was decided not to impose the use of any solution, but to allow the developer to make his own choice.
 If the project is small, it is recommended to look towards **[nanostores](https://github.com/nanostores/nanostores)** or **[zustand](https://github.com/pmndrs/zustand)**.
 Otherwise, you can choose from **[redux](https://redux.js.org/)**, **[effector](https://effector.dev/)** or whatever you prefer.
