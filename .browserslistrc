@@ -5,4 +5,5 @@ last 4 versions,
 > 0.2%,
 not dead,
 not op_mini all,
-not android 4.4.3-4.4.4
+not android 4.4.3-4.4.4,
+not kaios 2.5
