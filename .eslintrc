@@ -39,6 +39,13 @@
         "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "error",
         "import/no-extraneous-dependencies": "off",
+        "react/jsx-sort-props": ["error", {
+          "callbacksLast": true,
+          "shorthandFirst": true,
+          "ignoreCase": true,
+          "noSortAlphabetically": true,
+          "reservedFirst": true
+        }],
         "import/extensions": "off", // Avoid missing file extension errors, TypeScript already provides a similar feature
         "no-underscore-dangle": "off",
         "max-len": "off", // Disable line length checks, because the IDE is already configured to warn about it, and it's a waste of time to check for lines that are too long, especially in comments (like this one!)
