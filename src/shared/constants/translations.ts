@@ -1,7 +1,7 @@
 const translations = {
   common: {
-    seoTitle: '',
-    seoDescription: '',
+    seoTitle: 'Wizardry',
+    seoDescription: 'Starter template for frontend project based on Next.js framework with app directory',
   },
   techPages: {
     errorPageTitle: 'Something went wrong!',
