@@ -62,6 +62,18 @@ export const getMetadata = ({
         description,
         images,
       },
+      icons: {
+        icon: [
+          { url: '/assets/icons/favicon.ico', sizes: '32x32' },
+          { url: '/assets/icons/icon.svg', type: 'image/svg+xml' },
+        ],
+        apple: {
+          url: '/assets/icons/apple-touch-icon.png',
+          sizes: '180x180',
+          type: 'image/png',
+        },
+      },
+      manifest: '/assets/icons/site.webmanifest',
     },
     isNil,
   );
