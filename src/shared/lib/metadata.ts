@@ -5,6 +5,8 @@ import { getPath, type RoutePaths } from 'shared/constants/routes';
 import translations from 'shared/constants/translations';
 import { z } from 'zod';
 
+import { siteUrl } from '@/config/env';
+
 export const schemaImage = z.object({
   width: z.number(),
   height: z.number(),
@@ -19,38 +21,38 @@ export const schemaPageMetadata = z.object({
   description: z.string().optional(),
 });
 
-export const getMetadata = (
-  meta: z.infer<typeof schemaPageMetadata> | undefined,
-  path: RoutePaths = 'homepage',
-  slug?: string,
-) => {
-  if (!meta) {
-    return {};
-  }
-
-  const title = meta.title || translations.common.seoTitle;
-  const description = meta.description || translations.common.seoDescription;
-  const images = meta.image ? { images: meta.image } : {};
-  const url = translations.common.siteURL + getPath(path, slug);
+export const getMetadata = ({
+  title = translations.common.seoTitle,
+  description = translations.common.seoDescription,
+  image: images = {
+    url: `${siteUrl}/assets/images/starter-banner.png`,
+    width: 1280,
+    height: 720,
+    alt: 'Wizardry social share image',
+  },
+  path = 'homepage',
+  slug,
+}: {
+  path?: RoutePaths;
+  slug?: string;
+} & z.infer<typeof schemaPageMetadata> = {}) => {
+  const url = getPath(path, { slug });
 
   return omitBy<Metadata>(
     {
-      metadataBase: new URL(url),
+      metadataBase: new URL(siteUrl),
       title,
       applicationName: title,
       description,
       alternates: {
         canonical: url,
       },
-      other: {
-        url,
-      },
       openGraph: {
         title,
         siteName: title,
         url,
         description,
-        ...images,
+        images,
         locale: 'en_US',
         type: 'website',
       },
@@ -58,7 +60,7 @@ export const getMetadata = (
         card: 'summary_large_image',
         title,
         description,
-        ...images,
+        images,
       },
     },
     isNil,

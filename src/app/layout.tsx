@@ -9,7 +9,7 @@ import { inter } from './fonts';
 export async function generateMetadata(): Promise<Metadata> {
   // const globals = await globalsApi.get();
   // return getMetadata(globals.data.meta);
-  return getMetadata({});
+  return getMetadata();
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {

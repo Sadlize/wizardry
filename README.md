@@ -1,7 +1,7 @@
 # Starter template for frontend project based on Next.js framework with app directory
 
 <p align="center">
-  <img src="public/images/starter-banner.png?raw=true" alt="Template starter banner">
+  <img src="public/assets/images/starter-banner.png?raw=true" alt="Template starter banner">
 </p>
 
 ## Table of Contents

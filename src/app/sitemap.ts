@@ -1,9 +1,8 @@
 import type { MetadataRoute } from 'next';
-import translations from 'shared/constants/translations';
+
+import { siteUrl } from '@/config/env';
 
 import { methods as sitemapApi } from './model/services/fetchSitemap';
-
-const URL = translations.common.siteURL;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const { data, errorCode } = await sitemapApi.get();
@@ -13,7 +12,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }
 
   return data.map(({ url, lastModified, priority }) => ({
-    url: URL + url,
+    url: siteUrl + url,
     lastModified,
     priority,
   }));

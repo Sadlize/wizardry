@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
-import translations from 'shared/constants/translations';
+
+import { siteUrl } from '@/config/env';
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -7,7 +8,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    host: translations.common.siteURL,
-    sitemap: `${translations.common.siteURL}/sitemap.xml`,
+    host: siteUrl,
+    sitemap: `${siteUrl}/sitemap.xml`,
   };
 }

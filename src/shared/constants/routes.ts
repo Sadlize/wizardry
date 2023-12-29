@@ -5,7 +5,7 @@ const routes = {
 
 export type RoutePaths = keyof typeof routes;
 
-export const getPath = (type: RoutePaths, slug?: string | null) => {
+export const getPath = (type: RoutePaths, { slug }: { slug?: string | null } = {}) => {
   if (!slug) {
     return routes[type];
   }
