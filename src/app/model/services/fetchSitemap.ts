@@ -1,32 +1,36 @@
+import { requestHandler } from 'shared/lib/fetch/requestHandler';
 import { sitemapMock } from 'shared/mocks/sitemapMock';
-import { ZodError } from 'zod';
 
 import { schemaSitemap, type SitemapProps } from '../types/sitemapType';
+// import fetch from "shared/lib/fetch";
 
 const get = async () => {
-  let fetchData: SitemapProps = [];
-  let errorCode: undefined | number;
-  try {
-    // Request - Choose your favourite
-    // const response = await fetch();
-    // fetchData = schemaSitemap.parse(response);
+  const { data = [], errorCode } = await requestHandler<SitemapProps>(
+    // Fetch - Choose your favourite or try our
+    // async () => {
+    //     const response = await fetch.get(
+    //       'https://jsonplaceholder.typicode.com/posts',
+    //       {
+    //         headers: {Authorization: ''},
+    //         json: true,
+    //         // data: {
+    //         //   query: '',
+    //         //   variables: {},
+    //         //   operationName: "getSitemap",
+    //         // },
+    //       },
+    //     );
+    //   return schemaSitemap.parse(response);
+    //   },
 
     // Mock
-    fetchData = schemaSitemap.parse(sitemapMock);
-  } catch (error) {
-    console.error('sitemap', error);
+    () => schemaSitemap.parse(sitemapMock),
+    'sitemap',
+  );
 
-    if (error) {
-      // errorCode = error.status;
-    } else if (error instanceof ZodError) {
-      errorCode = 422;
-    }
-  }
+  // Here you can modify data
 
-  return {
-    data: fetchData,
-    errorCode,
-  };
+  return { data, errorCode };
 };
 
 export const methods = {
