@@ -109,12 +109,14 @@ After cloning repository you will get next structure:
 │   ├── 📂features/                   # FSD layer
 │   ├── 📂flat-pages/                 # FSD pages layer (page ui)
 │   └── 📂shared/                     # FSD layer
-│       ├── 📂constants/              # Page logic
-│       │   ├── 📃routes.ts           # getPath() function with type handle routes
+│       ├── 📂constants/
 │       │   └── 📃translations.ts     # all site plain text + SEO
 │       ├── 📂lib/
 │       │   └── 📃metadata.ts         # getMetadata() function to generate SEO
-│       └── 📂mocks/                  # Mocks folder
+│       ├── 📂routing/
+│       │   └── 📃paths.ts            # getPath() function with type handle routes
+│       └── 📂mocks/
+│           └── 📃sitemapMock.ts
 ├── 📃.browserslistrc                 # https://github.com/browserslist/browserslist
 ├── 📃.commitlintrc                   # commitlint config
 ├── 📃.editorconfig                   # editor config helps maintain consistent coding styles for multiple developers working on the same project across various editors and IDEs.

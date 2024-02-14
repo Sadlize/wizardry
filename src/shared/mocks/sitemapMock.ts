@@ -1,4 +1,4 @@
-import { getPath } from 'shared/constants/routes';
+import { getPath } from 'shared/routing/paths';
 
 export const sitemapMock = [
   {

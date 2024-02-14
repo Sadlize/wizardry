@@ -52,12 +52,17 @@ type Options = {
   formData?: FormData;
   json?: boolean;
   headers?: HeadersInit;
+  noEncode?: boolean;
 };
 
 type Method = 'get' | 'post' | 'put' | 'patch' | 'del';
 
-async function generateMethod(method: Method, path: Url, { params, data, formData, json, headers }: Options = {}) {
-  const url: Url = encodeURI(path.toString());
+async function generateMethod(
+  method: Method,
+  path: Url,
+  { params, data, formData, json, headers, noEncode }: Options = {},
+) {
+  const url: Url = noEncode ? path.toString() : encodeURI(path.toString());
 
   const options: RequestInit = { method };
 

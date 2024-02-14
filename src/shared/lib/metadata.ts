@@ -1,8 +1,8 @@
 import { isNil } from 'lodash';
 import omitBy from 'lodash/omitBy';
 import { type Metadata } from 'next';
-import { getPath, type RoutePaths } from 'shared/constants/routes';
 import translations from 'shared/constants/translations';
+import { getPath, type RoutePaths } from 'shared/routing/paths';
 import { z } from 'zod';
 
 import { siteUrl } from '@/config/env';
@@ -32,9 +32,11 @@ export const getMetadata = ({
   },
   path = 'homepage',
   slug,
+  noIndex = false,
 }: {
   path?: RoutePaths;
   slug?: string;
+  noIndex?: boolean;
 } & z.infer<typeof schemaPageMetadata> = {}) => {
   const url = getPath(path, { slug });
 
@@ -74,6 +76,12 @@ export const getMetadata = ({
         },
       },
       manifest: '/assets/icons/site.webmanifest',
+      ...(noIndex && {
+        robots: {
+          index: false,
+          follow: false,
+        },
+      }),
     },
     isNil,
   );
