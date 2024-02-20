@@ -1,7 +1,7 @@
-import { requestHandler } from 'shared/lib/fetch/requestHandler';
-import { sitemapMock } from 'shared/mocks/sitemapMock';
+import { requestHandler } from 'shared/lib/fetch/request-handler';
 
-import { schemaSitemap, type SitemapProps } from '../types/sitemapType';
+import { sitemapMock } from './sitemap.mock';
+import { schemaSitemap, type SitemapProps } from './sitemap.types';
 // import fetch from "shared/lib/fetch";
 
 const get = async () => {

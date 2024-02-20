@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next';
 
 import { siteUrl } from '@/config/env';
 
-import { methods as sitemapApi } from './model/services/fetchSitemap';
+import { methods as sitemapApi } from './model/fetch-sitemap';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const { data, errorCode } = await sitemapApi.get();

@@ -1,12 +1,14 @@
 @import 'breakpoints';
 
 :root {
+  // Element sizes
+  --site-max-width: 1920px;
+
   // Design columns grid
-  --dcg-max-width: 1920px;
   --dcg-count: 4;
   --dcg-margin: 2rem;
   --dcg-gutter: 2rem;
-  --dcg-column-width: calc((min(100vw, var(--dcg-max-width)) - 2 * var(--dcg-margin) - ((var(--dcg-count) - 1) * var(--dcg-gutter))) / var(--dcg-count));
+  --dcg-column-width: calc((min(100vw, var(--site-max-width)) - 2 * var(--dcg-margin) - ((var(--dcg-count) - 1) * var(--dcg-gutter))) / var(--dcg-count));
   --dcg-4columns: calc(4 * var(--dcg-column-width) + 3 * var(--dcg-gutter));
   --dcg-6columns: calc(6 * var(--dcg-column-width) + 5 * var(--dcg-gutter));
   --dcg-8columns: calc(8 * var(--dcg-column-width) + 7 * var(--dcg-gutter));
