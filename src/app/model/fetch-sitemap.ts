@@ -1,8 +1,8 @@
-import { requestHandler } from 'shared/lib/fetch/request-handler';
+import { requestHandler } from 'shared/lib/fetch';
 
 import { sitemapMock } from './sitemap.mock';
 import { schemaSitemap, type SitemapProps } from './sitemap.types';
-// import fetch from "shared/lib/fetch";
+// import { fetch } from "shared/lib/fetch";
 
 const get = async () => {
   const { data = [], errorCode } = await requestHandler<SitemapProps>(

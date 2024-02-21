@@ -7,19 +7,20 @@
     "node": true
   },
   /*
-  * Configuration for JavaScript files
-  */
+   * Configuration for JavaScript files
+   */
   "extends": [
     "airbnb-base",
     "next/core-web-vitals" // Needed to avoid warning in next.js build: 'The Next.js plugin was not detected in your ESLint configuration'
   ],
   "overrides": [
     /*
-    * Configuration for TypeScript files
-    */
+     * Configuration for TypeScript files
+     */
     {
       "files": ["**/*.ts", "**/*.tsx"],
       "plugins": [
+        "boundaries",
         "@typescript-eslint",
         "unused-imports",
         "simple-import-sort"
@@ -34,7 +35,115 @@
       "parserOptions": {
         "project": "./tsconfig.json"
       },
+      "settings": {
+        // FSD boundaries
+        "boundaries/include": ["src/**/*"],
+        "boundaries/elements": [
+          {
+            "type": "app",
+            "pattern": "app"
+          },
+          {
+            "type": "views",
+            "pattern": "views/*",
+            "capture": ["view"]
+          },
+          {
+            "type": "widgets",
+            "pattern": "widgets/*",
+            "capture": ["widget"]
+          },
+          {
+            "type": "features",
+            "pattern": "features/*",
+            "capture": ["feature"]
+          },
+          {
+            "type": "entities",
+            "pattern": "entities/*",
+            "capture": ["entity"]
+          },
+          {
+            "type": "shared",
+            "pattern": "shared/*",
+            "capture": ["segment"]
+          }
+        ]
+      },
       "rules": {
+        // FSD rules
+        "boundaries/entry-point": [
+          "error",
+          {
+            "default": "disallow",
+            "message": "Absolute imports are only allowed from public api.",
+            "rules": [
+              {
+                "target": ["shared"],
+                "allow": "(*|*/index).(ts|tsx)"
+              },
+              {
+                "target": ["app", "views", "widgets", "features", "entities"],
+                "allow": "index.(ts|tsx)"
+              }
+            ]
+          }
+        ],
+        "boundaries/element-types": [
+          "error",
+          {
+            "default": "allow",
+            "message": "${file.type} is not allowed to import (${dependency.type})",
+            "rules": [
+              {
+                "from": ["shared"],
+                "disallow": ["app", "views", "widgets", "features", "entities"],
+                "message": "Shared module must not import upper layers (${dependency.type})"
+              },
+              {
+                "from": ["entities"],
+                "message": "Entity must not import upper layers (${dependency.type})",
+                "disallow": ["app", "views", "widgets", "features"]
+              },
+              {
+                "from": ["entities"],
+                "message": "Entity must not import other entity",
+                "disallow": [["entities", { "entity": "!${entity}" }]]
+              },
+              {
+                "from": ["features"],
+                "message": "Feature must not import upper layers (${dependency.type})",
+                "disallow": ["app", "views", "widgets"]
+              },
+              {
+                "from": ["features"],
+                "message": "Feature must not import other feature",
+                "disallow": [["features", { "feature": "!${feature}" }]]
+              },
+              {
+                "from": ["widgets"],
+                "message": "Widget must not import upper layers (${dependency.type})",
+                "disallow": ["app", "views"]
+              },
+              {
+                "from": ["widgets"],
+                "message": "Widget must not import other widget",
+                "disallow": [["widgets", { "widget": "!${widget}" }]]
+              },
+              {
+                "from": ["views"],
+                "message": "View(Page) must not import upper layers (${dependency.type})",
+                "disallow": ["app"]
+              },
+              {
+                "from": ["views"],
+                "message": "View(Page) must not import other page",
+                "disallow": [["views", { "view": "!${view}" }]]
+              }
+            ]
+          }
+        ],
+        // Code style rules
         "no-console": ["error", { "allow": ["warn", "error"] }],
         "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "error",
@@ -75,25 +184,7 @@
         "import/order": "off", // Avoid conflict rule between `eslint-plugin-import` and `eslint-plugin-simple-import-sort`
         "unused-imports/no-unused-imports": "error",
         "unused-imports/no-unused-vars": "off",
-        "@typescript-eslint/no-unused-vars": [
-          "error",
-          { "argsIgnorePattern": "^_" }
-        ]
-      }
-    },
-    /*
-    * Configuration for Storybook
-    */
-    {
-      "files": ["*.stories.*"],
-      "extends": ["plugin:storybook/recommended"],
-      "rules": {
-        "import/no-extraneous-dependencies": [
-          "error",
-          {
-            "devDependencies": true
-          }
-        ]
+        "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
       }
     }
   ]
