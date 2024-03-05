@@ -9,6 +9,7 @@ type ErrorCustomFields = Partial<{
   status: number;
 }>;
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 async function handleResponse({ url, options }: { url: Url; options: RequestInit }): Promise<any> {
   const response = await fetch(url, options);
 
