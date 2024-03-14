@@ -8,17 +8,16 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint src/ --ext .ts --ext .tsx && stylelint **/*.scss",
-    "lintCode": "eslint src/ --ext .ts --ext .tsx",
+    "lint": "eslint src/ --ext .ts,.tsx && stylelint **/*.scss",
+    "lintCode": "eslint src/ --ext .ts,.tsx",
     "lintStyles": "stylelint **/*.scss",
-    "lint:fix": "eslint src/ --ext .ts --ext .tsx --fix && stylelint **/*.scss --fix",
+    "lint:fix": "eslint src/ --ext .ts,.tsx --fix && stylelint **/*.scss --fix",
     "format": "prettier --write src/**/*.{ts,tsx}",
     "typecheck": "tsc --noEmit",
     "commit": "cz",
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build",
-    "storybook:serve": "http-server storybook-static --port 6006 --silent",
-    "prepare": "husky install"
+    "storybook:serve": "http-server storybook-static --port 6006 --silent"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.0",
