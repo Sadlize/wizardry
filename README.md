@@ -161,6 +161,17 @@ npm install
 yarn install
 ```
 
+Prepare Husky:
+
+```bash
+# PNPM
+pnpm run prepare
+# NPM
+npm run prepare
+# Yarn
+yarn prepare
+```
+
 ### ⌨️ Development
 
 Once all dependencies have been installed, you can run the local development server:

@@ -17,7 +17,8 @@
     "commit": "cz",
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build",
-    "storybook:serve": "http-server storybook-static --port 6006 --silent"
+    "storybook:serve": "http-server storybook-static --port 6006 --silent",
+    "prepare": "husky install"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.0",
