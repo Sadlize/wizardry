@@ -10,7 +10,7 @@
    * Configuration for JavaScript files
    */
   "extends": [
-    "plugin:wizardry-fsd/default",
+    "plugin:wizardry-fsd/next",
     "airbnb",
     "next/core-web-vitals", // Needed to avoid warning in next.js build: 'The Next.js plugin was not detected in your ESLint configuration'
     "prettier"
