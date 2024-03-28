@@ -1,4 +1,5 @@
 {
+  "root": true,
   "env": {
     "jest": true,
     "browser": true,
@@ -71,13 +72,13 @@
         "project": "./tsconfig.json"
       },
       "rules": {
+        "@typescript-eslint/indent": "off",  // Should be handled with Prettier instead
         "@typescript-eslint/ban-ts-comment": "warn", // ts-ignore are sometimes the only way to bypass a TS issue, we trust we will use them for good and not abuse them
         "@typescript-eslint/comma-dangle": "off", // Avoid conflict rule between Eslint and Prettier
         "@typescript-eslint/consistent-type-imports": ["error", {
           "fixStyle": "inline-type-imports"
         }], // Ensure `import type` is used when it's necessary
         "@typescript-eslint/no-explicit-any": "error",
-
         "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
       }
     }

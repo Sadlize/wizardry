@@ -47,6 +47,6 @@
       }
     ]
   },
-  "exclude": ["./out/**/*", "./node_modules/**/*"],
+  "exclude": ["./out/**/*", "./node_modules/**/*", "./templates/**/*"],
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".storybook/*.ts", ".next/types/**/*.ts"]
 }
